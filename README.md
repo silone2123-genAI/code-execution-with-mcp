@@ -2,6 +2,7 @@
 
 To convert the source repository into a "Code Execution" capable MCP server, you need to shift from a server that simply provides static information to one that can compile and run Java code on behalf of the AI.
 In the "Code Execution with MCP" approach, the AI doesn't just ask for files; it writes a snippet of code, sends it to your server, and your server returns the output of that execution.
+
 Step 1: Add the MCP Java SDK
 Ensure your pom.xml includes the official Model Context Protocol Java SDK. This allows your application to speak the MCP language (JSON-RPC over Stdio).
 <dependency>
@@ -19,6 +20,7 @@ Simplified Logic for your Java Server:
    * Run ProcessBuilder pb = new ProcessBuilder("javac", "TempQuery.java").
    * Run ProcessBuilder pb = new ProcessBuilder("java", "TempQuery").
  * Return Output: Capture the stdout and stderr and send them back to the AI.
+   
 Step 3: Initialize the MCP Server
 In your Main.java, initialize the server using Stdio transport. This allows AI clients (like Claude Desktop or VS Code) to start your JAR file and communicate with it.
 McpSyncServer server = McpServer.sync(new StdioServerTransport())
